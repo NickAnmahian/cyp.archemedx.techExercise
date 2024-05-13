@@ -10,6 +10,7 @@ I've included some cy.wait() commands to try and compensate for this in specific
 
 login_spec works consistently just for testing the login after an account has already been registered.
 
+activity_spec_DEFUNCT is retained as an alternative, but much less granular way of performing the workflow. See Improvement Goals #2.
 
 Improvement Goals:
 1. Gain a better understanding of the app code so I can more consistently and appropriately target specific elements.
