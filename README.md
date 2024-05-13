@@ -28,3 +28,8 @@ Improvement Goals:
    - Definitely important to have activity_spec be more than 1 test, but given the context of the exercise,
      I thought it might not be necessary to increase test execution time for this sake. All I would have to do is further breakdown each of the current tests by
      copy pasting more "it" and cy.origin code around the fundamental test components.
+4. More assertions within tests.
+   - I included some assertion checks, like url checks, and visibility checks, but I could always add in more to confirm that everything is working AND appears as intended.
+   - However, I didn't want to bloat the test with unnecessary checks and slow down the test too much.
+  
+Feedback and Critiques would be greatly appreciated!!!
