@@ -1,16 +1,12 @@
 
 
 describe('Complete Activity Workflow', () => {
-
-    
-    it('Logs In', () => {
+    it('Performs the Complete Activity Workflow', () => {
         //Login command
         //Requires running register_spec.cy.js beforehand
         //Ensures account has not yet been used to complete activity
         cy.login();
-    });
-
-    it('Fills in firstname, lastname, and selects role', () => {
+        
         cy.origin('https://kyber.arche.services', () => {
 
         //Fill in firstname, lastname, and select role
@@ -21,42 +17,35 @@ describe('Complete Activity Workflow', () => {
 
             cy.contains('Continue').click();
 
-            });
-    })
-      
-    it('Performs the Pre-Test', () => {
-        cy.origin('https://kyber.arche.services', () => {
-
         //Begin Pre-Test
-        cy.get('[data-test="smart-card-cta"]').click();
-        cy.get('[data-test="questionnaire-cta"]').click();
+             cy.get('[data-test="smart-card-cta"]').click();
+             cy.get('[data-test="questionnaire-cta"]').click();
+            
+ 
+         //Pre-Test
+             //Question 1
+             cy.url().should('include', '/q/f3f95e9a-8de2-4bdd-b74c-7891e24926e7');
+             cy.contains('correct').click();
+             cy.contains('I\'m Sure').click();
+ 
+             //Question 2
+             cy.url().should('include', '/q/b5ec3731-7ed3-418e-8bed-e4ea7883651a');
+             cy.contains('correct').click();
+             cy.contains('I\'m Sure').click();
+ 
+             //Question 3
+             cy.url().should('include', '/q/92bd652f-457a-4a69-856b-734ef3f95fe1');
+             cy.get('.c00174 [type="checkbox"]').check({ force: true });
+             cy.contains('I\'m Sure').click();
+ 
+             //Submit
+             cy.get('[data-test="questionnaire-submit-button"]').click();
+             
+            
+
        
 
-    //Pre-Test
-        //Question 1
-        cy.url().should('include', '/q/f3f95e9a-8de2-4bdd-b74c-7891e24926e7');
-        cy.contains('correct').click();
-        cy.contains('I\'m Sure').click();
-
-        //Question 2
-        cy.url().should('include', '/q/b5ec3731-7ed3-418e-8bed-e4ea7883651a');
-        cy.contains('correct').click();
-        cy.contains('I\'m Sure').click();
-
-        //Question 3
-        cy.url().should('include', '/q/92bd652f-457a-4a69-856b-734ef3f95fe1');
-        cy.get('.c00174 [type="checkbox"]').check({ force: true });
-        cy.contains('I\'m Sure').click();
-
-        //Submit
-        cy.get('[data-test="questionnaire-submit-button"]').click();
-
-         });
-    })
-
-    it('Performs the Video Activity', () => {
-        cy.origin('https://kyber.arche.services', () => {
-            //Video Activity
+        //Video Activity
             cy.get('[data-test="continue-to-activity-button"]').click();
             cy.get('[data-test="play-video-button"]').click();
 
@@ -76,12 +65,8 @@ describe('Complete Activity Workflow', () => {
             cy.get('[data-test="active-moment-type-note', {timeout: 45000}).should('be.visible');
             cy.contains('Continue').click()
 
-        });
-    }) 
 
-    it('Performs the Post-Test', () => {
-        cy.origin('https://kyber.arche.services', () => {
-            //Begin Post-Test
+        //Begin Post-Test
             cy.contains('Take Post-Test', { timeout: 40000}).click();
             cy.get('[data-test="questionnaire-cta"]').click();
 
@@ -103,28 +88,25 @@ describe('Complete Activity Workflow', () => {
  
              //Submit
              cy.get('[data-test="questionnaire-submit-button"]').click();
+             
+
+        //Begin Evaluation
+            cy.contains('Take Evaluation').click();
+            cy.get('[data-test="questionnaire-cta"]').click();
+
+            //Question 1
+            cy.url().should('include', '/q/1576ceae-cd32-44a7-8b30-7c4cf5d7c764');
+            cy.contains('Amazing').click();
+            cy.get('[data-test="confidence-button"]').click();
+
+            //Submit
+            cy.get('[data-test="questionnaire-submit-button"]').click();
+
+        //Complete
+            cy.contains('Go Home').click();
+            cy.contains('h1', 'Curriculum').should('be.visible');
+
 
         });
-    })    
-
-    it('Performs the Evaluation', () => {
-        cy.origin('https://kyber.arche.services', () => {
-             //Begin Evaluation
-             cy.contains('Take Evaluation').click();
-             cy.get('[data-test="questionnaire-cta"]').click();
- 
-             //Question 1
-             cy.url().should('include', '/q/1576ceae-cd32-44a7-8b30-7c4cf5d7c764');
-             cy.contains('Amazing').click();
-             cy.get('[data-test="confidence-button"]').click();
- 
-             //Submit
-             cy.get('[data-test="questionnaire-submit-button"]').click();
- 
-         //Complete
-             cy.contains('Go Home').click();
-             cy.contains('h1', 'Curriculum').should('be.visible');
-
-        });
-    })
+    });
 });
