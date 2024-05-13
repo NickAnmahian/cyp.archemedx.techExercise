@@ -1,0 +1,14 @@
+{
+  "name": "cyp.archemedx.techexercise",
+  "version": "1.0.0",
+  "description": "ArcheMedX QA Internship Technical Exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NickAnmahian",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.9.0"
+  }
+}
