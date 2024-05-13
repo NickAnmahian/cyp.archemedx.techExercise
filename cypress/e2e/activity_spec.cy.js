@@ -7,6 +7,9 @@ describe('Complete Activity Workflow', () => {
         //Login command
         //Requires running register_spec.cy.js beforehand
         //Ensures account has not yet been used to complete activity
+        cy.clearAllLocalStorage();
+        cy.clearAllSessionStorage();
+        cy.clearAllCookies()
         cy.login();
     });
 

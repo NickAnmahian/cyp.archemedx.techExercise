@@ -1,5 +1,12 @@
 //Login command
 Cypress.Commands.add('login', () => {
+  //clear browser state before registering again, so visiting the login page can be successful
+  //consequence of having to set testIsolation: false in the config for the activity_spec to work
+  //See README
+  cy.clearAllLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.clearAllCookies()
+
     cy.visit('https://kyber.arche.services/api/v1/learner/curricula/4a2a1540-bb68-4d2b-94b2-ce0349cacc7b/activities/4b1c3fcc-599f-4efc-a325-82eb7c066137/authorize?identity-provider=kyber-staging')
     cy.url().should('include', '/u/login');
   
@@ -22,6 +29,13 @@ Cypress.Commands.add('login', () => {
 
 //Register Command
 Cypress.Commands.add('register', () => {
+  //clear browser state before registering again, so visiting the login page can be successful
+  //consequence of having to set testIsolation: false in the config for the activity_spec to work
+  //See README
+  cy.clearAllLocalStorage();
+    cy.clearAllSessionStorage();
+    cy.clearAllCookies()
+    
   cy.visit('https://www.sharklasers.com/')
   cy.get('span[data-step="2"]').invoke('text').then((emailAddress) => {
     // Update the email fixture in loginInfo.json with the extracted email address
