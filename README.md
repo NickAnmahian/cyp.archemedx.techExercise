@@ -22,6 +22,7 @@ Improvement Goals:
    - Without this, creating a new "it" command will always clear the state of the browser, interrupting the workflow during the activity
    - I'm not a huge fan of this workaround, but it at least makes the cypress readout more comprehensible as it runs the tests, and failure
      in one component won't readout failure for the entire script.
+   - (This is also what requires the cy.clearAll___(); commands that start off each spec and command.  Creates a clear browser state at the start, but doesn't clear the state at each test within a spec like it would by default)
 3. Make the tests more granular.
    - I could break my "it" commands down even further, making the tests more modular and easier to debug
    - Definitely important to have activity_spec be more than 1 test, but given the context of the exercise,
